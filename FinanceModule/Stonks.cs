@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using YahooFinanceApi;
+using Fynance;
 using System.Threading.Tasks;
 using System.Text;
 using System.IO;
 using System.Linq;
+using Fynance.Result;
 
 namespace FinanceModule
 {
@@ -39,20 +40,28 @@ namespace FinanceModule
             }
         }
 
+        char[] spin = new char[] { '_', '-', '^' };
+
         public async Task<List<Stonket>> GetStockData(Stonk stonk, DateTime startDate, DateTime endDate)
         {
             List<Stonket> outval = new List<Stonket>();
             try
             {
-                var data = await Yahoo.GetHistoricalAsync(stonk.Symbol, startDate, endDate);
-                var security = await Yahoo.Symbols(stonk.Symbol).Fields(Field.LongName).QueryAsync();
-                var ticker = security[stonk.Symbol];
-                var companyName = ticker[Field.LongName];
-
-                for (int i = 0; i < data.Count; i++)
+                YahooTicker ticker = new YahooTicker(stonk.Symbol);
+                Task<FyResult> t = ticker.GetAsync();
+                Console.Write("Downloading Data !");
+                for (int i = 0; !t.IsCompleted; i++)
                 {
+                    Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                    Console.Write(spin[i % spin.Length]);
+                    Thread.Sleep(1000);
+                }
+
+                foreach (var data in t.Result.Quotes)
+                {
+                    
                     // Console.WriteLine("(" + i.ToString() + ") " + companyName + " Closing price on: " + data.ElementAt(i).DateTime.Month + "/" + data.ElementAt(i).DateTime.Day + "/" + data.ElementAt(i).DateTime.Year + "$" + Math.Round(data.ElementAt(i).Close, 2));
-                    outval.Add(new Stonket(data.ElementAt(i).Volume, data.ElementAt(i).High, data.ElementAt(i).Low, data.ElementAt(i).Close, data.ElementAt(i).Open, data.ElementAt(i).DateTime));
+                    outval.Add(new Stonket((long)data.Volume, data.High, data.Low, data.Close, data.Open, data.Period));
                 }
             }
             catch (Exception e)
