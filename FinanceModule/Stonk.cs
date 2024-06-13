@@ -31,9 +31,10 @@ namespace FinanceModule
         public decimal LowPrice;
         public decimal ClosingPrice;
         public decimal OpeningPrice;
+        public decimal AdjustedClosingPrice;
         public DateTime TimeStamp;
 
-        public Stonket(long volume, decimal highPrice, decimal lowPrice, decimal closingPrice, decimal openingPrice, DateTime timeStamp)
+        public Stonket(long volume, decimal highPrice, decimal lowPrice, decimal closingPrice, decimal openingPrice, decimal adjustedClosingPrice, DateTime timeStamp)
         {
             Volume = volume;
             HighPrice = highPrice;
@@ -41,6 +42,7 @@ namespace FinanceModule
             ClosingPrice = closingPrice;
             OpeningPrice = openingPrice;
             TimeStamp = timeStamp;
+            AdjustedClosingPrice = adjustedClosingPrice;
         }
     }
 }

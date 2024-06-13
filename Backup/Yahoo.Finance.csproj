@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Users\dagma\.nuget\packages\yahoo.finance\4.3.3\lib\netstandard2.0\Yahoo.Finance.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0E1FCA4B-0FC5-402D-8FFD-1CCB95E9AF41}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Yahoo.Finance</AssemblyName>
+    <ApplicationVersion>0.0.0.0</ApplicationVersion>
+    <RootNamespace>Yahoo.Finance</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="netstandard" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EarningsCalendarProvider.cs" />
+    <Compile Include="Equity.cs" />
+    <Compile Include="EquityData.cs" />
+    <Compile Include="EquityStatisticalData.cs" />
+    <Compile Include="EquitySummaryData.cs" />
+    <Compile Include="QuoteSummaryStore.cs" />
+    <Compile Include="StoreExtractionToolkit.cs" />
+    <Compile Include="StreamQuoteStore.cs" />
+    <Compile Include="EquityScreen.cs" />
+    <Compile Include="EquityScreener.cs" />
+    <Compile Include="HistoricalDataDownloadResult.cs" />
+    <Compile Include="HistoricalDataProvider.cs" />
+    <Compile Include="HistoricalDataRecord.cs" />
+    <Compile Include="YahooFinanceToolkit.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

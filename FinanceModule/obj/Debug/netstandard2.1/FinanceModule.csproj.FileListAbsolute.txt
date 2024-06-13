@@ -1,0 +1,10 @@
+D:\Visual Studio Projects\FinanceModule\FinanceModule\obj\Debug\netstandard2.1\FinanceModule.csproj.AssemblyReference.cache
+D:\Visual Studio Projects\FinanceModule\FinanceModule\obj\Debug\netstandard2.1\FinanceModule.GeneratedMSBuildEditorConfig.editorconfig
+D:\Visual Studio Projects\FinanceModule\FinanceModule\obj\Debug\netstandard2.1\FinanceModule.AssemblyInfoInputs.cache
+D:\Visual Studio Projects\FinanceModule\FinanceModule\obj\Debug\netstandard2.1\FinanceModule.AssemblyInfo.cs
+D:\Visual Studio Projects\FinanceModule\FinanceModule\obj\Debug\netstandard2.1\FinanceModule.csproj.CoreCompileInputs.cache
+D:\Visual Studio Projects\FinanceModule\FinanceModule\bin\Debug\netstandard2.1\FinanceModule.deps.json
+D:\Visual Studio Projects\FinanceModule\FinanceModule\bin\Debug\netstandard2.1\FinanceModule.dll
+D:\Visual Studio Projects\FinanceModule\FinanceModule\bin\Debug\netstandard2.1\FinanceModule.pdb
+D:\Visual Studio Projects\FinanceModule\FinanceModule\obj\Debug\netstandard2.1\FinanceModule.dll
+D:\Visual Studio Projects\FinanceModule\FinanceModule\obj\Debug\netstandard2.1\FinanceModule.pdb

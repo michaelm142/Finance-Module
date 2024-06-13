@@ -65,7 +65,7 @@ namespace FinanceModule
                 foreach (var data in t.Result.Quotes)
                 {
                     // Console.WriteLine("(" + i.ToString() + ") " + companyName + " Closing price on: " + data.ElementAt(i).DateTime.Month + "/" + data.ElementAt(i).DateTime.Day + "/" + data.ElementAt(i).DateTime.Year + "$" + Math.Round(data.ElementAt(i).Close, 2));
-                    outval.Add(new Stonket((long)data.Volume, data.High, data.Low, data.Close, data.Open, data.Period));
+                    outval.Add(new Stonket((long)data.Volume, data.High, data.Low, data.Close, data.Open, data.AdjClose, data.Period));
                 }
             }
             catch (Exception e)
