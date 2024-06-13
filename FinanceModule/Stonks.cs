@@ -6,6 +6,7 @@ using System.Text;
 using System.IO;
 using System.Linq;
 using Fynance.Result;
+using System.Collections;
 
 namespace FinanceModule
 {
@@ -40,26 +41,29 @@ namespace FinanceModule
             }
         }
 
-        char[] spin = new char[] { '_', '-', '^' };
+        string[] spin = new string[] { "   ", ".  ", ".. ", "..." };
 
-        public async Task<List<Stonket>> GetStockData(Stonk stonk, DateTime startDate, DateTime endDate)
+        public List<Stonket> GetStockData(Stonk stonk, DateTime startDate, DateTime endDate)
         {
             List<Stonket> outval = new List<Stonket>();
             try
             {
                 YahooTicker ticker = new YahooTicker(stonk.Symbol);
+                ticker.SetStartDate(startDate);
+                ticker.SetFinishDate(endDate);
                 Task<FyResult> t = ticker.GetAsync();
-                Console.Write("Downloading Data !");
+                Console.Write("Downloading Data    ");
                 for (int i = 0; !t.IsCompleted; i++)
                 {
-                    Console.SetCursorPosition(Console.CursorLeft - 1, Console.CursorTop);
+                    Console.SetCursorPosition(Console.CursorLeft - 3, Console.CursorTop);
                     Console.Write(spin[i % spin.Length]);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(100);
                 }
+                Console.WriteLine();
+                Console.WriteLine(ticker.Result.Currency);
 
                 foreach (var data in t.Result.Quotes)
                 {
-                    
                     // Console.WriteLine("(" + i.ToString() + ") " + companyName + " Closing price on: " + data.ElementAt(i).DateTime.Month + "/" + data.ElementAt(i).DateTime.Day + "/" + data.ElementAt(i).DateTime.Year + "$" + Math.Round(data.ElementAt(i).Close, 2));
                     outval.Add(new Stonket((long)data.Volume, data.High, data.Low, data.Close, data.Open, data.Period));
                 }
@@ -72,13 +76,22 @@ namespace FinanceModule
             return outval;
         }
 
-        public static Stonk? Get(string nameOrSymbol)
+        public static Stonk? Get(string symbol)
         {
-            Stonk? stonk = stonks.Find(s => s.Symbol == nameOrSymbol);
-            if (stonk != null)
-                return stonk;
+            //Stonk s = new Stonk();
+            //try
+            //{
+            //    YahooTicker ticker = new YahooTicker(symbol);
+            //    ticker.Result.n
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("Exception of type {0} occoured. {1}", e.GetType(), e.Message);
+            //}
+            //if (stonk != null)
+            //    return stonk;
 
-            return stonks.Find(s => s.CompanyName == nameOrSymbol);
+            return stonks.Find(s => s.Symbol == symbol);
         }
 
         public static List<Stonket> Get(Stonk stonk, DateTime startTime, DateTime endTime)
@@ -86,7 +99,7 @@ namespace FinanceModule
             if (!_loaded)
                 throw new InvalidOperationException("Stonk symbols are not loaded!");
 
-            return s.GetStockData(stonk, startTime, endTime).Result;
+            return s.GetStockData(stonk, startTime, endTime);
         }
     }
 }
