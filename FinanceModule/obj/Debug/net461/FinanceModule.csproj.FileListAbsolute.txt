@@ -1,4 +1,0 @@
-D:\Visual Studio Projects\FinanceModule\FinanceModule\bin\Debug\net461\FinanceModule.dll
-D:\Visual Studio Projects\FinanceModule\FinanceModule\obj\Debug\net461\FinanceModule.csprojAssemblyReference.cache
-D:\Visual Studio Projects\FinanceModule\FinanceModule\obj\Debug\net461\FinanceModule.csproj.CoreCompileInputs.cache
-D:\Visual Studio Projects\FinanceModule\FinanceModule\obj\Debug\net461\FinanceModule.AssemblyInfo.cs
