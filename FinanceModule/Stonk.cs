@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FinanceModule
 {
-    public struct Stonk
+    public class Stonk
     {
         public string Symbol;
         public string CompanyName;
@@ -24,7 +24,7 @@ namespace FinanceModule
         }
     }
 
-    public struct Stonket
+    public class Stonket
     {
         public long Volume;
         public decimal HighPrice;
