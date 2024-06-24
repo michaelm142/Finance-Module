@@ -43,39 +43,6 @@ namespace FinanceModule
 
         private static string[] spin = new string[] { "   ", ".  ", ".. ", "..." };
 
-        public static List<Stonket> GetStockData(Stonk stonk, DateTime startDate, DateTime endDate)
-        {
-            List<Stonket> outval = new List<Stonket>();
-            try
-            {
-                YahooTicker ticker = new YahooTicker(stonk.Symbol);
-                ticker.SetStartDate(startDate);
-                ticker.SetFinishDate(endDate);
-                Task<FyResult> t = ticker.GetAsync();
-                Console.Write("Downloading Data    ");
-                for (int i = 0; !t.IsCompleted; i++)
-                {
-                    Console.SetCursorPosition(Console.CursorLeft - 3, Console.CursorTop);
-                    Console.Write(spin[i % spin.Length]);
-                    Thread.Sleep(100);
-                }
-                Console.WriteLine();
-                Console.WriteLine(ticker.Result.Currency);
-
-                foreach (var data in t.Result.Quotes)
-                {
-                    // Console.WriteLine("(" + i.ToString() + ") " + companyName + " Closing price on: " + data.ElementAt(i).DateTime.Month + "/" + data.ElementAt(i).DateTime.Day + "/" + data.ElementAt(i).DateTime.Year + "$" + Math.Round(data.ElementAt(i).Close, 2));
-                    outval.Add(new Stonket((long)data.Volume, data.High, data.Low, data.Close, data.Open, data.AdjClose, data.Period));
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception of type {0} occoured. {1}", e.GetType(), e.Message);
-            }
-
-            return outval;
-        }
-
         public static Stonk Get(string symbol)
         {
             //Stonk s = new Stonk();
@@ -118,7 +85,7 @@ namespace FinanceModule
             while (IsFederalHoliday(today))
             {
                 today = today.AddDays(-1);
-                yesterday = yesterday.AddDays(-1);   
+                yesterday = yesterday.AddDays(-1);
             }
             if (IsFederalHoliday(yesterday))
                 yesterday = yesterday.AddDays(-1);
@@ -161,7 +128,7 @@ namespace FinanceModule
             // failed to get data, return null
             return null;
         }
-        
+
         // determine if it is a federal holiday
         public static bool IsFederalHoliday(DateTime date)
         {
@@ -217,14 +184,6 @@ namespace FinanceModule
             int offset = (int)firstDayOfMonth.DayOfWeek;
             int weekOfMonth = (date.Day + offset - 1) / 7 + 1;
             return weekOfMonth;
-        }
-
-        public static List<Stonket> Get(Stonk stonk, DateTime startTime, DateTime endTime)
-        {
-            if (!_loaded)
-                throw new InvalidOperationException("Stonk symbols are not loaded!");
-
-            return GetStockData(stonk, startTime, endTime);
         }
     }
 }
